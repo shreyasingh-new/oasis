@@ -33,9 +33,18 @@ app.use('/api', organizerRoutes);
 app.use('/api', dashboardRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Basic Health Check Route
+// Root Welcome & Health Check Route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to Oasis API Server',
+    health: '/api/health',
+    documentation: 'Refer to Oasis deployment guide for API endpoints'
+  });
+});
+
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'OK', message: 'Oasis Backend API is running' });
+  res.status(200).json({ status: 'OK', message: 'Oasis Backend API is running smoothly' });
 });
 
 // Global Error Handler
